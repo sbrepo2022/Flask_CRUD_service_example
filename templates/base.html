@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Banquet | {{title}}</title>
+
+        <!-- <link rel="shortcut icon" href="/static/resources/logo/favicon.ico" type="image/x-icon"> -->
+
+        <!-- libs -->
+        <link rel="stylesheet" href="/static/libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/app.css">
+        <link rel="stylesheet" href="/static/css/reset.css">
+    </head>
+
+    <body>
+        {% if not exclude_header %}
+            <header>
+                <div class="flex-grow-1"></div>
+                {% if session['user_id'] %}
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger d-block">Выход</a>
+                {% else %}
+                    <a href="{{ url_for('auth.index') }}" class="btn btn-primary d-block">Вход</a>
+                {% endif %}
+            </header>
+        {% endif %}
+
+        {% block base_content %}
+
+        {% endblock %}
+        <div class="copyrights">By Sergey Borisov 2021</div>
+        <script src="/static/libs/jquery/jquery.min.js"></script>
+        <script src="/static/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

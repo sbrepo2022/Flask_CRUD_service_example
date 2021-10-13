@@ -1,0 +1,27 @@
+{% extends 'card.html' %}
+
+{% block content %}
+<form method="post">
+    {% if errors %}
+        <div class="rounded bg-danger text-white mb-4 p-4">
+            {% for item in errors %}
+                {{item}}
+                <br>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <h5 class="mb-4">Вход в систему</h5>
+    <div class="form-group text-left">
+        <label for="login">Логин</label>
+        <input class="form-control" id="login" type="text" name="login" required>
+    </div>
+    <div class="form-group text-left">
+        <label for="password">Пароль</label>
+        <input class="form-control" id="password" type="password" name="password" required>
+    </div>
+    <div class="d-flex align-items-center mt-4">
+        <input class="btn btn-primary mr-auto" type="submit" value="Войти в систему">
+        <a href="{{url_for('auth.register')}}">Нет аккаунта? Зарегистрируйтесь.</a>
+    </div>
+</form>
+{% endblock %}

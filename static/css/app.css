@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    font-size: 14px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0fa;
+    padding: 1rem;
+    padding-bottom: 5rem;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    display: flex;
+}
+
+.card-surface {
+    display: inline-block;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    box-shadow: 0 1rem 2rem #8080aa33;
+}
+
+.card-surface-wide {
+    display: inline-block;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 1000px;
+    background-color: #fff;
+    box-shadow: 0 1rem 2rem #8080aa33;
+}
+
+.copyrights {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 1rem;
+    color: #777;
+}
+
+.main-surface {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    height: 100%;
+    padding-top: 2rem;
+    align-items: stretch;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.backdrop-surface {
+    flex-grow: 1;
+    border-top-left-radius: 1rem;
+    background-color: #fff;
+    box-shadow: 0 1rem 2rem #8080aa33;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.rail-elem {
+    display: block;
+    width: 6rem;
+    padding: 2rem 0 2rem 0;
+    text-align: center;
+    cursor: pointer;
+    color: #262626;
+    text-decoration: none;
+}
+
+.rail-elem.active, .rail-elem:hover {
+    background-color: #8080aa33;
+    color: #262626;
+    text-decoration: none;
+}
+
+.empty {
+    color: #777;
+    font-size: 1.5rem;
+}
+
+.table-wrapper {
+    overflow: auto;
+    text-align: left;
+}
+
+.table-surface {
+    display: inline-block;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid #8080aa;
+}
+
+.table-surface tr:first-child {
+    background-color: #8080aa;
+}
+
+.table-surface tr:not(:last-child) {
+    border-bottom: 1px solid #8080aa;
+}
+
+.table-surface tr > td:not(:last-child) {
+    border-right: 1px solid #8080aa;
+}
+
+.table-surface tr:first-child > td {
+    text-align: left;
+    font-weight: bold;
+    color: #fff;
+}
+
+.table-surface tr:not(:first-child) > td {
+    text-align: left;
+}
+
+.table-surface td {
+    padding: 1rem;
+}

@@ -1,0 +1,11 @@
+{% extends 'card.html' %}
+
+{% block content %}
+<ul>
+    {% for item in query_links %}
+        <li>
+            <a href="{{ url_for('query.index') }}/{{item.link}}" class="btn btn-outline-primary d-block mb-4">{{item.description}}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

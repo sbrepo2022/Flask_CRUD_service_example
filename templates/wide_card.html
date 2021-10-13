@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block base_content %}
+<h1 class="text-center mt-4 mb-5"><a href="/">Banquet</a> | {{title}}</h1>
+<div class="text-center">
+    <div class="card-surface-wide p-4">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{
+    "dish_more_expensive_than": {
+        "description": "Вывод всех блюд, которые дороже чем указанная стоимость",
+        "inputs": [
+            {
+                "id": "cost",
+                "name": "cost",
+                "label": "Стоимость",
+                "type": "number",
+                "required": true
+            }
+        ],
+        "query": "SELECT * FROM menu WHERE cost > %s",
+        "params": ["cost"]
+    },
+    "orders_between_dates": {
+        "description": "Вывод всех заказов, созданных между указанными датами",
+        "inputs": [
+            {
+                "id": "startDate",
+                "name": "start_date",
+                "label": "С (дата)",
+                "type": "date",
+                "required": true
+            },
+            {
+                "id": "endDate",
+                "name": "end_date",
+                "label": "По (дата)",
+                "type": "date",
+                "required": true
+            }
+        ],
+        "query": "SELECT * FROM orders WHERE date BETWEEN %s AND %s",
+        "params": ["start_date", "end_date"]
+    }
+}
