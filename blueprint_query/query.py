@@ -37,7 +37,8 @@ def db_query_request(path, form_data):
 
     # setting query and it's parameters
     if path in query_config:
-        db_query = query_config[path]['query']
+        with open(query_config[path]['query'], 'r') as f_sql:
+            db_query = f_sql.read()
         query_params = [form_data[param] for param in query_config[path]['params']]
 
         try:

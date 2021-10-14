@@ -10,7 +10,7 @@
                 "required": true
             }
         ],
-        "query": "SELECT * FROM menu WHERE cost > %s",
+        "query": "blueprint_query/sql/dish_more_expensive_than.sql",
         "params": ["cost"]
     },
     "orders_between_dates": {
@@ -31,7 +31,7 @@
                 "required": true
             }
         ],
-        "query": "SELECT * FROM orders WHERE date BETWEEN %s AND %s",
+        "query": "blueprint_query/sql/orders_between_dates.sql",
         "params": ["start_date", "end_date"]
     }
 }
