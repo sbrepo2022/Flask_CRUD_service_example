@@ -1,5 +1,6 @@
 {
     "dish_more_expensive_than": {
+        "level": 1,
         "description": "Вывод всех блюд, которые дороже чем указанная стоимость",
         "inputs": [
             {
@@ -14,6 +15,7 @@
         "params": ["cost"]
     },
     "orders_between_dates": {
+        "level": 0,
         "description": "Вывод всех заказов, созданных между указанными датами",
         "inputs": [
             {

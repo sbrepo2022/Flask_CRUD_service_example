@@ -75,12 +75,19 @@ header {
 
 .rail-elem {
     display: block;
-    width: 6rem;
+    width: 7rem;
     padding: 2rem 0 2rem 0;
     text-align: center;
     cursor: pointer;
     color: #262626;
     text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.rail-elem > img {
+    width: 2.25rem;
+    height: auto;
+    margin-bottom: 0.5rem;
 }
 
 .rail-elem.active, .rail-elem:hover {
@@ -130,4 +137,10 @@ header {
 
 .table-surface td {
     padding: 1rem;
+}
+
+.card-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }

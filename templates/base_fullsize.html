@@ -15,22 +15,18 @@
     </head>
 
     <body>
-        {% if not exclude_header %}
-            <header>
-                <div class="flex-grow-1"></div>
-                {% if session['user_id'] %}
-                    <a href="{{ url_for('profile.index') }}" class="btn btn-secondary d-block mr-3">Профиль</a>
-                    <a href="{{ url_for('auth.logout') }}" class="btn btn-danger d-block">Выход</a>
-                {% else %}
-                    <a href="{{ url_for('auth.index') }}" class="btn btn-primary d-block">Вход</a>
-                {% endif %}
-            </header>
-        {% endif %}
+        <div class="main-surface">
+            <div class="sidebar">
+                {% include 'sidebar_fullsize.html' %}
+            </div>
+            <div class="backdrop-surface">
+                <h1 class="mb-4"><a class="text-primary" href="/">Banquet</a> | {{title}}</h1>
+                {% block content %}
 
-        {% block base_content %}
+                {% endblock %}
+            </div>
+        </div>
 
-        {% endblock %}
-        <div class="copyrights">By Sergey Borisov 2021</div>
         <script src="/static/libs/jquery/jquery.min.js"></script>
         <script src="/static/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     </body>

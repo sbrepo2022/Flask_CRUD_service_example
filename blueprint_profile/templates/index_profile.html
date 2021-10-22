@@ -1,0 +1,53 @@
+{% extends 'base_fullsize.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-7">
+        <div class="card-column">
+            <div class="card">
+                <div class="card-body">
+                    {% if errors.sp_error %}
+                        <div class="rounded bg-danger text-center text-white mb-4 p-4">
+                            {{errors.sp_error}}
+                        </div>
+                    {% endif %}
+                    {% if success.sp_success %}
+                        <div class="rounded bg-success text-center text-white mb-4 p-4">
+                            {{success.sp_success}}
+                        </div>
+                    {% endif %}
+                    <h5 class="card-title">Смена пароля</h5>
+                    <form action="{{url_for('profile.set_password')}}" method="post">
+                        <div class="form-group text-left">
+                            <label for="password">Пароль</label>
+                            <input class="form-control" id="password" type="password" name="password" required>
+                        </div>
+                        <div class="form-group text-left">
+                            <label for="password2">Повтор пароля</label>
+                            <input class="form-control" id="password2" type="password" name="password2" required>
+                        </div>
+                        <input class="btn btn-primary mr-auto" type="submit" value="Сменить пароль">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card-column">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Информация</h5>
+                    <div class="card-title">
+                        <span class="font-weight-bold">login: </span>
+                        <span class="text-secondary">{{data.login}}</span>
+                    </div>
+                    <div class="card-title">
+                        <span class="font-weight-bold">level: </span>
+                        <span class="text-secondary">{{data.level}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

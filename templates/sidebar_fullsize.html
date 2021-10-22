@@ -1,0 +1,12 @@
+<div class="mt-4">
+    {% for item in sidebar %}
+        <a href="{{item.link}}" class="rail-elem {% if cur_page == item.name %}active{% endif %}">
+            <img src="{{item.img_src}}">
+            <div>{{item.title}}</div>
+        </a>
+    {% endfor %}
+</div>
+<a href="/auth/logout" class="rail-elem mt-auto">
+    <img src="/static/resources/icons/logout.svg">
+    <div>Выход</div>
+</a>

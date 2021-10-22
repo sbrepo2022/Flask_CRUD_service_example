@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template, request
+from flask import Flask, Blueprint, render_template, request, session
 from db.dbcm import make_query
 import json
 
@@ -19,13 +19,17 @@ def index():
 @query.route('/<path>', methods=['GET', 'POST'])
 @user_level_requires(0)
 def form(path):
-    if request.method == 'GET':
-        with open('blueprint_query/configs/query_config.json', 'r') as f_conf:
-            query_config = json.load(f_conf)
-        return render_template('query_form.html', title='Форма запроса', form_data=query_config[path])
-    elif request.method == 'POST':
-        query_data = db_query_request(path, request.form)
-        return render_template('query_result.html', title='Результат запроса', query_sql=query_data['query_sql'], table_data=query_data['table_data'])
+    with open('blueprint_query/configs/query_config.json', 'r') as f_conf:
+        query_config = json.load(f_conf)
+
+    @user_level_requires(query_config[path]['level'])
+    def level():
+        if request.method == 'GET':
+            return render_template('query_form.html', title='Форма запроса', form_data=query_config[path])
+        elif request.method == 'POST':
+            query_data = db_query_request(path, request.form)
+            return render_template('query_result.html', title='Результат запроса', query_sql=query_data['query_sql'], table_data=query_data['table_data'])
+    return level()
 
 
 def db_query_request(path, form_data):
