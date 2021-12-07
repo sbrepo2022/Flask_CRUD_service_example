@@ -3,7 +3,9 @@
 {% block content %}
 <ul>
     <li>
-        <a href="{{ url_for('query.index') }}" class="btn btn-outline-primary d-block">Работа с запросами</a>
+        <a href="{{ url_for('query.index') }}" class="btn btn-outline-primary d-block mb-4">Работа с запросами</a>
+        <a href="{{ url_for('dishes.index') }}" class="btn btn-outline-primary d-block mb-4">Управление блюдами</a>
+        <a href="{{ url_for('orders.index') }}" class="btn btn-outline-primary d-block">Создание заказов</a>
     </li>
 </ul>
 {% endblock %}

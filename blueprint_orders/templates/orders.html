@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block base_content %}
+    <h1 class="text-center mt-4 mb-5"><a class="text-primary" href="/">Banquet</a> | Создание заказов</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-12 mb-4">
+                <div class="card-surface-flex p-lg-4 p-2 mb-4">
+                    <div>
+                        <h5 class="d-inline-block mr-4 mb-5">Список блюд</h5>
+                        <button class="btn badge badge-secondary" type="button" data-toggle="collapse" data-target="#collapseDishes" aria-expanded="false" aria-controls="collapseExample">
+                            свернуть
+                        </button>
+                    </div>
+                    <div class="collapse show" id="collapseDishes">
+                        <div class="table-wrapper">
+                            <table class="table-surface">
+                                <tbody>
+                                {% for rows in dish_data %}
+                                <tr>
+                                    {% for item in rows %}
+                                    <td>{{item}}</td>
+                                    {% endfor %}
+                                    <td>
+                                        {% if rows[0] != dish_data[0][0] %}
+                                        <button class="btn badge badge-success" type="button" data-action="add-position" data-id="{{rows[0]}}" data-title="{{rows[1]}}">В корзину</button>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-surface-flex p-lg-4 p-2">
+                    <div>
+                        <h5 class="d-inline-block mr-4 mb-5">Список заказов</h5>
+                        <button class="btn badge badge-secondary" type="button" data-toggle="collapse" data-target="#collapseOrders" aria-expanded="false" aria-controls="collapseExample">
+                            свернуть
+                        </button>
+                    </div>
+                    <div class="collapse show" id="collapseOrders">
+                        <div class="table-wrapper">
+                            <table class="table-surface">
+                                <tbody>
+                                {% for rows in orders_data %}
+                                <tr>
+                                    {% for item in rows %}
+                                    <td>{{item}}</td>
+                                    {% endfor %}
+                                    <td>
+                                        {% if rows[0]|int != 0 %}
+                                        <button class="btn badge badge-danger" type="button" data-action="delete-order" data-id="{{rows[0]}}">Удалить</button>
+                                        <button class="btn badge badge-info" type="button" data-action="details-order" data-id="{{rows[0]}}" data-date="{{rows[1]}}" data-cost="{{rows[2]}}" data-c-id="{{rows[3]}}">Подробнее</button>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="card-surface-flex p-lg-4 p-2">
+                    <div class="clearfix">
+                        <h5 class="d-inline-block mr-4 mb-5">Корзина</h5>
+                        <button class="btn btn-success float-right" type="button" data-action="create-order">Создать заказ</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="table-surface">
+                            <tbody>
+                            {% for rows in basket_data %}
+                            <tr>
+                                {% for item in rows %}
+                                <td>{{item}}</td>
+                                {% endfor %}
+                                <td>
+                                    {% if rows[0] != basket_data[0][0] %}
+                                    <button class="btn badge badge-danger" type="button" data-action="delete-position" data-id="{{rows[0]}}">Удалить</button>
+                                    <button class="btn badge badge-primary" type="button" data-action="edit-position" data-id="{{rows[0]}}" data-title="{{rows[1]}}" data-amount="{{rows[2]}}">Изменить</button>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="basketPositionModal" tabindex="-1" role="dialog" aria-labelledby="basketPositionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="basketPositionForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="basketPositionModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input id="positionCreateNew" type="hidden" name="create_new">
+                        <input id="dishId" type="hidden" name="dish_id">
+                        <div class="mb-4">
+                            <span class="font-weight-bold">Название: </span>
+                            <span id="dishTitle"></span>
+                        </div>
+                        <div class="form-group text-left">
+                            <label class="font-weight-bold" for="dishAmount">Количество</label>
+                            <input id="dishAmount" class="form-control" id="dishAmount" type="number" name="amount">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="orderDetailsModal" tabindex="-1" role="dialog" aria-labelledby="orderDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderDetailsModalLabel">Детали заказа</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <span class="mb-2 mr-2">
+                            <span class="font-weight-bold">Order id: </span>
+                            <span id="orderId"></span>
+                        </span>
+                        <span class="mb-2 mr-2">
+                            <span class="font-weight-bold">Order date: </span>
+                            <span id="orderDate"></span>
+                        </span>
+                        <span class="mb-2 mr-2">
+                            <span class="font-weight-bold">Customer id: </span>
+                            <span id="customerId"></span>
+                        </span>
+                    </div>
+                    <div class="table-wrapper mb-4">
+                        <table class="table-surface">
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5>
+                        <span class="font-weight-bold">Order cost: </span>
+                        <span id="orderCost"></span>
+                    </h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Ок</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block special_scripts %}
+    <script src="/static/js/orders.js"></script>
+{% endblock %}

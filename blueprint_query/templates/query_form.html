@@ -5,7 +5,7 @@
     <h5 class="mb-4">{{form_data.description}}</h5>
     {% for item in form_data.inputs %}
         <div class="form-group text-left">
-            <label for="{{item.id}}">{{item.label}}</label>
+            <label class="font-weight-bold" for="{{item.id}}">{{item.label}}</label>
             <input class="form-control" id="{{item.id}}" type="{{item.type}}" name="{{item.name}}" {% if item.required%}required{% endif %}>
         </div>
     {% endfor %}

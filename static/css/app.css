@@ -9,12 +9,16 @@ body {
     background-color: #f0f0fa;
     padding: 1rem;
     padding-bottom: 5rem;
+    padding-top: 0;
 }
 
-header {
+.header-1 {
     position: sticky;
-    top: 0;
+    top: 0; left: 0; right: 0;
+    background-color: #f0f0fa;
     display: flex;
+    padding: 1rem;
+    z-index: 100;
 }
 
 .card-surface {
@@ -33,6 +37,13 @@ header {
     border-radius: 0.5rem;
     width: 100%;
     max-width: 1000px;
+    background-color: #fff;
+    box-shadow: 0 1rem 2rem #8080aa33;
+}
+
+.card-surface-flex {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
     background-color: #fff;
     box-shadow: 0 1rem 2rem #8080aa33;
 }

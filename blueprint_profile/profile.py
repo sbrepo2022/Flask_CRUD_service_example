@@ -52,6 +52,7 @@ def index():
                            sidebar=sidebar_config,
                            cur_page='profile',
                            data={
+                               'user_id': data[0],
                                'login': data[1],
                                'level': data[3]
                            },
